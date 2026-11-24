@@ -2,13 +2,6 @@ import { useState } from 'react';
 import type { KeyboardEvent } from 'react';
 import type { Todo } from '../types';
 
-
-const focus =
-  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700';
-const btn = `min-h-11 rounded-lg border border-stone-300 bg-white px-3.5 text-sm hover:border-stone-500 ${focus}`;
-const btnPrimary = `min-h-11 rounded-lg border border-teal-700 bg-teal-700 px-3.5 text-sm text-white hover:brightness-110 ${focus}`;
-const textInput = `min-w-0 rounded-lg border border-stone-300 bg-white px-3 py-2.5 ${focus}`;
-
 type Props = {
   todo: Todo;
   onToggle: (id: string) => void;
@@ -41,9 +34,6 @@ export default function TodoItem({
     if (e.key === 'Escape') setEditing(false);
   }
 
-  const textSize = 'basis-[calc(100%-2rem)] sm:flex-1 sm:basis-auto';
-  const actions = 'flex w-full justify-end gap-1.5 sm:w-auto';
-
   return (
     <li className="flex flex-wrap items-center gap-3 rounded-xl border border-stone-200 bg-white px-3 py-2.5 sm:flex-nowrap">
       <input
@@ -63,13 +53,23 @@ export default function TodoItem({
             onKeyDown={handleKey}
             aria-label="Ubah teks tugas"
             autoFocus
-            className={`${textInput} ${textSize}`}
+            className={`min-w-0 rounded-lg border border-stone-300 bg-white px-3 py-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 basis-[calc(100%-2rem)] sm:flex-1 sm:basis-auto`}
           />
-          <div className={actions}>
-            <button className={btnPrimary} onClick={save}>
+          <div className="flex w-full justify-end gap-1.5 sm:w-auto">
+            <button
+              className={
+                'min-h-11 rounded-lg border border-teal-700 bg-teal-700 px-3.5 text-sm text-white hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700'
+              }
+              onClick={save}
+            >
               Simpan
             </button>
-            <button className={btn} onClick={() => setEditing(false)}>
+            <button
+              className={
+                'min-h-11 rounded-lg border border-stone-300 bg-white px-3.5 text-sm hover:border-stone-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700'
+              }
+              onClick={() => setEditing(false)}
+            >
               Batal
             </button>
           </div>
@@ -77,18 +77,23 @@ export default function TodoItem({
       ) : (
         <>
           <span
-            className={`min-w-0 wrap-break-word ${textSize} ${
+            className={`min-w-0 wrap-break-word basis-[calc(100%-2rem)] sm:flex-1 sm:basis-auto ${
               todo.done ? 'text-stone-400 line-through' : ''
             }`}
           >
             {todo.text}
           </span>
-          <div className={actions}>
-            <button className={btn} onClick={startEdit}>
+          <div className={'flex w-full justify-end gap-1.5 sm:w-auto'}>
+            <button
+              className={
+                'min-h-11 rounded-lg border border-stone-300 bg-white px-3.5 text-sm hover:border-stone-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700'
+              }
+              onClick={startEdit}
+            >
               Edit
             </button>
             <button
-              className={`${btn} text-red-700`}
+              className={`min-h-11 rounded-lg border border-stone-300 bg-white px-3.5 text-sm hover:border-stone-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 text-red-700`}
               onClick={() => onDelete(todo.id)}
             >
               Hapus
