@@ -42,7 +42,5 @@ export function useTodos() {
   const deleteTodo = (id: string) =>
     setTodos((prev) => prev.filter((t) => t.id !== id));
 
-  const clearDone = () => setTodos((prev) => prev.filter((t) => !t.done));
-
-  return { todos, addTodo, toggleTodo, updateTodo, deleteTodo, clearDone };
+  return { todos, addTodo, toggleTodo, updateTodo, deleteTodo };
 }
