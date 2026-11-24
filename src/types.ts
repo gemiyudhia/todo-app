@@ -4,4 +4,3 @@ export type Todo = {
   done: boolean;
 };
 
-export type Filter = 'all' | 'active' | 'done';
